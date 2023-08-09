@@ -51,3 +51,9 @@ sudo git clone https://github.com/diego-treitos/linux-smart-enumeration.git /opt
 sudo wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh -P /opt/payloads/linux/linux_exploit_suggestor
 
 sudo mv /opt/payloads/linux/linux_exploit_suggestor/linux-exploit-suggester.sh /opt/payloads/linux/linux_exploit_suggestor/les.sh
+
+
+# Update Seclists
+
+sudo rm -rf /usr/share/seclists
+sudo git clone https://github.com/danielmiessler/SecLists.git /usr/share/seclists  
