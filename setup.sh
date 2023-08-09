@@ -21,6 +21,8 @@ sudo rm -rf /opt/pimpmykali
 #############################################
 # This Section is for fixes/work around
 
+# test comment
+
 # install pip3
 sudo apt -y install python3-pip
 
