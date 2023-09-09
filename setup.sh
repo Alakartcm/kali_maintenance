@@ -21,6 +21,9 @@ sudo rm -rf /opt/pimpmykali
 #############################################
 # This Section is for fixes/work around
 
+# This will ensure pipx is installed, which will be important for future updates
+
+sudo apt -y install pipx
 
 # install pip3
 sudo apt -y install python3-pip
