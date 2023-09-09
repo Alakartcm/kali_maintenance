@@ -21,7 +21,6 @@ sudo rm -rf /opt/pimpmykali
 #############################################
 # This Section is for fixes/work around
 
-# test comment
 
 # install pip3
 sudo apt -y install python3-pip
@@ -143,7 +142,7 @@ sudo mkdir /opt/payloads/linux
 
 sudo git clone https://github.com/61106960/adPEAS.git /opt/payloads/windows/adpeas
 
-# Download winpeas
+# Download winpeas testing
 sudo mkdir /opt/payloads/windows/winpeas
 
 sudo wget https://github.com/carlospolop/PEASS-ng/releases/download/20220710/winPEAS.bat -P /opt/payloads/windows/winpeas
