@@ -57,3 +57,8 @@ sudo mv /opt/payloads/linux/linux_exploit_suggestor/linux-exploit-suggester.sh /
 
 sudo rm -rf /usr/share/seclists
 sudo git clone https://github.com/danielmiessler/SecLists.git /usr/share/seclists  
+
+# Update Templates
+
+nuclei -update-templates
+
