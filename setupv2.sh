@@ -37,7 +37,7 @@ ansible-playbook /opt/playbook/kali_build/test.yml
 
 # 2- Run Pimp my kali
 
-./opt/pimpmykali/pimpmykali.sh
+/opt/pimpmykali/pimpmykali.sh
 
 # 3- remove pimpmykali
 
