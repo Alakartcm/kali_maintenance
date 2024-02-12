@@ -62,6 +62,8 @@ go install github.com/ropnop/kerbrute@master
 
 go install github.com/OJ/gobuster/v3@latest
 
+# 3- update locate database
+
 
 ########################################################
 
@@ -81,6 +83,6 @@ echo "alias kerbrute='/home/kali/go/bin/kerbrute'" | sudo tee -a /home/kali/.zsh
 
 # 3- Gobuster
 
-echo "alias gobuster='/usr/bin/gobuster'" | sudo tee -a /home/kali/.zshrc
+echo "alias gobuster='/home/kali/go/gobuster'" | sudo tee -a /home/kali/.zshrc
 
 ########################################################
