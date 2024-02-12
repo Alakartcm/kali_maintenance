@@ -68,10 +68,12 @@ sudo gem install wpscan
 sudo git clone https://github.com/maurosoria/dirsearch.git /opt/dirsearch
 
 # Nuclei
+# download PD version from github in future versions
 sudo apt install nuclei
 nuclei update-templates   
 
 # tplmap (SSTI attack tool)
+# This may need to stay in the sh workstream
 
 sudo git clone https://github.com/epinna/tplmap.git /opt/tplmap
 
@@ -222,3 +224,14 @@ echo "alias autorecon='/home/kali/.local/bin/autorecon'" | sudo tee -a /home/kal
 sudo updatedb
 
 export PATH=$PATH:/home/kali/.local/bin
+
+
+###########################
+# New script flow
+
+# Setup sh
+# download ansible
+# run ansible playboook
+# Run wget on relvant files (need to find out how to do this with docker)
+# run pimp my kali
+# set environment variables/config files (Proxy chains)
