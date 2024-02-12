@@ -15,7 +15,7 @@
 
 # 1- Install ansible to the system
 
-apt -y install ansible
+
 apt -y install ansible-core
 
 # 2- Download the ansible playbook to install tools and configure the terminal to my liking.
@@ -70,7 +70,7 @@ go install github.com/OJ/gobuster/v3@latest
 
 # 1- Autorecon
 
-echo "alias autorecon='/home/kali/.local/bin/autorecon'" | sudo tee -a /home/kali/.zshrc
+echo "alias autorecon='python3 /opt/autorecon/autorecon.py'" | sudo tee -a /home/kali/.zshrc
 
 # 2- Kerbrute
 
@@ -78,6 +78,6 @@ echo "alias kerbrute='/home/kali/go/bin/kerbrute'" | sudo tee -a /home/kali/.zsh
 
 # 3- Gobuster
 
-echo "alias gobuster='/home/kali/go/bin/gobuster'" | sudo tee -a /home/kali/.zshrc
+echo "alias gobuster='/usr/bin/gobuster'" | sudo tee -a /home/kali/.zshrc
 
 ########################################################
