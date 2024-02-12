@@ -13,8 +13,11 @@
 # Anisble
 #########################################################
 
-# 1- Install ansible to the system
+# 0- update the repositories
 
+apt update
+
+# 1- Install ansible to the system
 
 apt -y install ansible-core
 
@@ -24,7 +27,7 @@ git clone https://github.com/Alakartcm/ansible_kali.git /opt/playbook
 
 # 3- Run the setup playbook to prepare the
 
-ansible-playbook /opt/playbook/kali_build/test.yml
+ansible-playbook /opt/playbook/kali_build/main.yml
 
 ########################################################
 
