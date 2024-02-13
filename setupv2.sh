@@ -15,11 +15,11 @@
 
 # 0- update the repositories
 
-apt update
+sudo apt update
 
 # 1- Install ansible to the system
 
-apt -y install ansible-core
+sudo apt -y install ansible-core
 
 # 2- Download the ansible playbook to install tools and configure the terminal to my liking.
 
@@ -27,7 +27,7 @@ git clone https://github.com/Alakartcm/ansible_kali.git /opt/playbook
 
 # 3- Run the setup playbook to prepare the
 
-ansible-playbook /opt/playbook/kali_build/main.yml
+sudo ansible-playbook /opt/playbook/kali_build/main.yml
 
 ########################################################
 
@@ -40,7 +40,7 @@ ansible-playbook /opt/playbook/kali_build/main.yml
 
 # 2- Run Pimp my kali
 
-/opt/pimpmykali/pimpmykali.sh
+sudo /opt/pimpmykali/pimpmykali.sh
 
 # 3- remove pimpmykali
 
@@ -54,6 +54,7 @@ sudo rm -rf /opt/pimpmykali
 # Install Go Tools
 ########################################################
 
+
 # 1- Install Kerbrute
 
 go install github.com/ropnop/kerbrute@master
@@ -64,6 +65,7 @@ go install github.com/OJ/gobuster/v3@latest
 
 # 3- update locate database
 
+updatedb
 
 ########################################################
 
@@ -83,6 +85,6 @@ echo "alias kerbrute='/home/kali/go/bin/kerbrute'" | sudo tee -a /home/kali/.zsh
 
 # 3- Gobuster
 
-echo "alias gobuster='/home/kali/go/gobuster'" | sudo tee -a /home/kali/.zshrc
+echo "alias gobuster='/home/kali/go/bin/gobuster'" | sudo tee -a /home/kali/.zshrc
 
 ########################################################
