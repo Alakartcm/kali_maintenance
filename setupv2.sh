@@ -25,7 +25,7 @@ sudo apt -y install ansible-core
 
 sudo git clone https://github.com/Alakartcm/ansible_kali.git /opt/playbook
 
-sudo ansible-playbook /opt/playbook/kali_build/main.yml
+sudo ansible-playbook /opt/playbook/main.yml
 
 ########################################################
 
