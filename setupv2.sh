@@ -23,9 +23,7 @@ sudo apt -y install ansible-core
 
 # 2- Download the ansible playbook to install tools and configure the terminal to my liking.
 
-git clone https://github.com/Alakartcm/ansible_kali.git /opt/playbook
-
-# 3- Run the setup playbook to prepare the
+sudo git clone https://github.com/Alakartcm/ansible_kali.git /opt/playbook
 
 sudo ansible-playbook /opt/playbook/kali_build/main.yml
 
