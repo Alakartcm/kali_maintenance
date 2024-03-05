@@ -5,7 +5,7 @@
 
 # standard update before setup.
 
-sudo apt update
+ #sudo apt update
 
 # The first section is used to download and install Pimp My Kali.
 # The repo will be downloaded, the script run, then the created directory will be removed.

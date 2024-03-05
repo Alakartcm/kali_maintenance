@@ -50,7 +50,6 @@ sudo rm -rf /opt/pimpmykali
 
 
 
-
 # Install Go Tools
 ########################################################
 
@@ -63,9 +62,30 @@ go install github.com/ropnop/kerbrute@master
 
 go install github.com/OJ/gobuster/v3@latest
 
-# 3- update locate database
+# 3- Install Nuclei
+
+go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
+
+# 4- Install subfinder
+
+go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+
+# 5- notify
+
+go install -v github.com/projectdiscovery/notify/cmd/notify@latest
+
+# 6- Install anew
+
+go install -v github.com/tomnomnom/anew@latest
+
+# 7- Install OAM tools from OWASP
+
+go install -v github.com/owasp-amass/oam-tools/cmd/oam_subs@master
+
+# 8- update locate database
 
 updatedb
+
 
 ########################################################
 
@@ -86,5 +106,9 @@ echo "alias kerbrute='/home/kali/go/bin/kerbrute'" | sudo tee -a /home/kali/.zsh
 # 3- Gobuster
 
 echo "alias gobuster='/home/kali/go/bin/gobuster'" | sudo tee -a /home/kali/.zshrc
+
+# 4- xclip alias's
+
+echo "alias xpaste='xclip -o -selection clipboard'" | sudo tee -a /home/kali/.zshrc
 
 ########################################################
