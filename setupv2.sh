@@ -109,4 +109,8 @@ echo "alias gobuster='/home/kali/go/bin/gobuster'" | sudo tee -a /home/kali/.zsh
 
 echo "alias xpaste='xclip -o -selection clipboard'" | sudo tee -a /home/kali/.zshrc
 
+# 5- Add timestamps to terminal
+
+echo -e "PROMPT=\$PROMPT'%F{yellow}%}[%D{%m/%f/%y} %D{%L:%M:%S}] '" | sudo tee -a /home/kali/.zshrc
+
 ########################################################
