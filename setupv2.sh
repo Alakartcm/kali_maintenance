@@ -95,22 +95,22 @@ updatedb
 
 # 1- Autorecon
 
-echo "alias autorecon='python3 /opt/autorecon/autorecon.py'" | sudo tee -a /home/kali/.zshrc
+echo "alias autorecon='python3 /opt/autorecon/autorecon.py'" | sudo tee -a ~/.zshrc
 
 # 2- Kerbrute
 
-echo "alias kerbrute='/home/kali/go/bin/kerbrute'" | sudo tee -a /home/kali/.zshrc
+echo "alias kerbrute='/home/kali/go/bin/kerbrute'" | sudo tee -a ~/.zshrc
 
 # 3- Gobuster
 
-echo "alias gobuster='/home/kali/go/bin/gobuster'" | sudo tee -a /home/kali/.zshrc
+echo "alias gobuster='/home/kali/go/bin/gobuster'" | sudo tee -a ~/.zshrc
 
 # 4- xclip alias's
 
-echo "alias xpaste='xclip -o -selection clipboard'" | sudo tee -a /home/kali/.zshrc
+echo "alias xpaste='xclip -o -selection clipboard'" | sudo tee -a ~/.zshrc
 
 # 5- Add timestamps to terminal
 
-echo -e "PROMPT=\$PROMPT'%F{yellow}%}[%D{%m/%f/%y} %D{%L:%M:%S}] '" | sudo tee -a /home/kali/.zshrc
+echo -e "PROMPT=\$PROMPT'%F{yellow}%}[%D{%m/%f/%y} %D{%L:%M:%S}] '" | sudo tee -a ~/.zshrc
 
 ########################################################
