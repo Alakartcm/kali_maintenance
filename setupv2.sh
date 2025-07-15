@@ -34,7 +34,7 @@ sudo ansible-playbook /opt/playbook/main.yml
 
 # 12 installed when the ansible playbook runs
 
-# git clone https://github.com/Dewalt-arch/pimpmykali.git /opt/pimpmykali
+git clone https://github.com/Dewalt-arch/pimpmykali.git /opt/pimpmykali
 
 # 2- Run Pimp my kali
 
