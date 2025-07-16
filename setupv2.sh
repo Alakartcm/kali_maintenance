@@ -1,116 +1,78 @@
 #!/bin/bash
 
 # Kali Linux Setup by Alakar_TCM
-# Version 0.2.0
+# Version 0.3.0
 
-# Much of the work this script was doing has been offloaded to ansible,
-# which will now be included in this version of the script and going forward.
-# This script requires elevated privileges, take this into account when running this script
-# This script is meant for educational purpoeses only. Only utilize tools contained within on systems you have explicity permission to do so. 
+set -euo pipefail
 
+# User-editable variables
+USER_SHELL_RC="${HOME}/.zshrc"
+[ ! -f "$USER_SHELL_RC" ] && USER_SHELL_RC="${HOME}/.bashrc"
 
+# Section: Helper Functions
+log() { echo -e "\033[1;32m[+] $*\033[0m"; }
+run() { log "$*"; eval "$@"; }
 
-# Anisble
-#########################################################
+# Section: Pre-flight Checks
+if [[ $EUID -ne 0 ]]; then
+  log "This script must be run with sudo or as root."
+  exit 1
+fi
 
-# 0- update the repositories
+# Section: Update System & Install Ansible
+run "apt update"
+run "apt -y install ansible-core git"
 
-sudo apt update
+# Section: Run Ansible Playbook
+PLAYBOOK_PATH="/opt/playbook"
+if [[ ! -d "$PLAYBOOK_PATH" ]]; then
+  run "git clone https://github.com/Alakartcm/ansible_kali.git $PLAYBOOK_PATH"
+fi
+run "ansible-playbook $PLAYBOOK_PATH/main.yml"
 
-# 1- Install ansible to the system
+# Section: PimpMyKali
+PIMP_PATH="/opt/pimpmykali"
+if [[ ! -d "$PIMP_PATH" ]]; then
+  run "git clone https://github.com/Dewalt-arch/pimpmykali.git $PIMP_PATH"
+fi
+run "bash $PIMP_PATH/pimpmykali.sh"
+run "rm -rf $PIMP_PATH"
 
-sudo apt -y install ansible-core
+# Section: Install Go Tools
+export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 
-# 2- Download the ansible playbook to install tools and configure the terminal to my liking.
+GO_TOOLS=(
+  "github.com/ropnop/kerbrute@master"
+  "github.com/OJ/gobuster/v3@latest"
+  "github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest"
+  "github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest"
+  "github.com/projectdiscovery/notify/cmd/notify@latest"
+  "github.com/tomnomnom/anew@latest"
+  "github.com/owasp-amass/oam-tools/cmd/oam_subs@master"
+)
+for tool in "${GO_TOOLS[@]}"; do
+  run "go install -v $tool"
+done
 
-sudo git clone https://github.com/Alakartcm/ansible_kali.git /opt/playbook
+run "updatedb"
 
-sudo ansible-playbook /opt/playbook/main.yml
+# Section: Set Aliases and Shell Customizations
+declare -A ALIASES=(
+  ["autorecon"]="python3 /opt/autorecon/autorecon.py"
+  ["kerbrute"]="$HOME/go/bin/kerbrute"
+  ["gobuster"]="$HOME/go/bin/gobuster"
+  ["xpaste"]="xclip -o -selection clipboard"
+)
 
-########################################################
+for name in "${!ALIASES[@]}"; do
+  if ! grep -q "alias $name=" "$USER_SHELL_RC"; then
+    echo "alias $name='${ALIASES[$name]}'" >> "$USER_SHELL_RC"
+    log "Added alias $name to $USER_SHELL_RC"
+  fi
+done
 
-# Pimp my kali
-########################################################
+# Add zsh prompt timestamp (only for zsh)
+LINE="PROMPT=\$PROMPT'%F{yellow}[%D{%m/%d/%y} %D{%H:%M:%S}] '"
+grep -qxF "$LINE" ~/.zshrc || echo "$LINE" >> ~/.zshrc
 
-# 12 installed when the ansible playbook runs
-
-git clone https://github.com/Dewalt-arch/pimpmykali.git /opt/pimpmykali
-
-# 2- Run Pimp my kali
-
-sudo /opt/pimpmykali/pimpmykali.sh
-
-# 3- remove pimpmykali
-
-sudo rm -rf /opt/pimpmykali
-
-########################################################
-
-
-
-# Install Go Tools
-########################################################
-
-
-# 1- Install Kerbrute
-
-go install github.com/ropnop/kerbrute@master
-
-# 2- Install Gobuster
-
-go install github.com/OJ/gobuster/v3@latest
-
-# 3- Install Nuclei
-
-go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
-
-# 4- Install subfinder
-
-go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-
-# 5- notify
-
-go install -v github.com/projectdiscovery/notify/cmd/notify@latest
-
-# 6- Install anew
-
-go install -v github.com/tomnomnom/anew@latest
-
-# 7- Install OAM tools from OWASP
-
-go install -v github.com/owasp-amass/oam-tools/cmd/oam_subs@master
-
-# 8- update locate database
-
-updatedb
-
-
-########################################################
-
-
-
-
-# Set Aliases
-########################################################
-
-# 1- Autorecon
-
-echo "alias autorecon='python3 /opt/autorecon/autorecon.py'" | sudo tee -a ~/.zshrc
-
-# 2- Kerbrute
-
-echo "alias kerbrute='/home/kali/go/bin/kerbrute'" | sudo tee -a ~/.zshrc
-
-# 3- Gobuster
-
-echo "alias gobuster='/home/kali/go/bin/gobuster'" | sudo tee -a ~/.zshrc
-
-# 4- xclip alias's
-
-echo "alias xpaste='xclip -o -selection clipboard'" | sudo tee -a ~/.zshrc
-
-# 5- Add timestamps to terminal
-
-echo -e "PROMPT=\$PROMPT'%F{yellow}%}[%D{%m/%f/%y} %D{%L:%M:%S}] '" | sudo tee -a ~/.zshrc
-
-########################################################
+log "Kali Linux setup complete! Please restart your terminal or 'source $USER_SHELL_RC' to use new aliases and prompt."
